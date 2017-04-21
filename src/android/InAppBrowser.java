@@ -770,10 +770,13 @@ public class InAppBrowser extends CordovaPlugin {
                         cordova.startActivityForResult(InAppBrowser.this, Intent.createChooser(content, "Select File"), FILECHOOSER_REQUESTCODE);
                     }
 
-					 public void onCloseWindow(Window w){
-						super.onCloseWindow(w);
-						LOG.d(LOG_TAG, "Window close");
-					}
+					  public void onCloseWindow(WebView window){
+
+					super.onCloseWindow(window);
+
+					webView.removeView(window);
+
+				}
 
 
                 });
