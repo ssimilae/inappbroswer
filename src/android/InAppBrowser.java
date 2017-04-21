@@ -774,7 +774,6 @@ public class InAppBrowser extends CordovaPlugin {
 					public void onCloseWindow(WebView window) {
 						super.onCloseWindow(thatWebView);
 
-						//mWebViewContainer.removeView(window);    // 화면에서 제거
 					}
 
 
