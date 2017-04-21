@@ -135,7 +135,7 @@ public class InAppChromeClient extends WebChromeClient {
 
 					super.onCloseWindow(window);
 
-					inAppWebView.removeView(window);
+				
 
 	}
 
