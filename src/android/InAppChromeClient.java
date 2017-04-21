@@ -131,13 +131,11 @@ public class InAppChromeClient extends WebChromeClient {
         return false;
     }
 
-    @Override
-	 public void onCloseWindow(Window window){
-
-					super.onCloseWindow(window);
- 
-
-	}
+		public override void OnCloseWindow(Android.Webkit.WebView window)
+        {
+            base.OnCloseWindow(window);
+            //Your favorite logging library call.
+        }
 
 
 }
