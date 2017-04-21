@@ -772,7 +772,7 @@ public class InAppBrowser extends CordovaPlugin {
 
 					 public void onCloseWindow(Window w){
 						super.onCloseWindow(w);
-						Log.d(LOG_TAG, "Window close");
+						LOG.d(LOG_TAG, "Window close");
 					}
 
 
