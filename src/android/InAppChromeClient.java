@@ -29,6 +29,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.view.Window;
 import android.webkit.GeolocationPermissions.Callback;
 
 public class InAppChromeClient extends WebChromeClient {
@@ -131,11 +132,10 @@ public class InAppChromeClient extends WebChromeClient {
     }
 
     @Override
-	 public void onCloseWindow(WebView window){
+	 public void onCloseWindow(Window window){
 
 					super.onCloseWindow(window);
-
-				
+ 
 
 	}
 
