@@ -29,7 +29,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.view.Window;
 import android.webkit.GeolocationPermissions.Callback;
 
 public class InAppChromeClient extends WebChromeClient {
@@ -130,12 +129,5 @@ public class InAppChromeClient extends WebChromeClient {
         }
         return false;
     }
-
-		public override void OnCloseWindow(Android.Webkit.WebView window)
-        {
-            base.OnCloseWindow(window);
-            //Your favorite logging library call.
-        }
-
 
 }
