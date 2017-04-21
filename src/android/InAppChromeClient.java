@@ -30,6 +30,7 @@ import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.GeolocationPermissions.Callback;
+import android.view.Window;
 
 public class InAppChromeClient extends WebChromeClient {
 
@@ -129,5 +130,13 @@ public class InAppChromeClient extends WebChromeClient {
         }
         return false;
     }
+
+
+
+	 public void onCloseWindow(Window w){
+        super.onCloseWindow(w); 
+    }
+
+
 
 }
