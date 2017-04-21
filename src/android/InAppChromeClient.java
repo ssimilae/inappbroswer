@@ -130,4 +130,11 @@ public class InAppChromeClient extends WebChromeClient {
         return false;
     }
 
+	@Override
+    public void onCloseWindow(WebView window) {
+         super.onCloseWindow(window);
+    }
+
+ 
+
 }
