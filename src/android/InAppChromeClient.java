@@ -21,7 +21,7 @@ public class InAppChromeClient extends WebChromeClient {
 
     private static final FrameLayout.LayoutParams COVER_SCREEN_PARAMS = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-    public FullscreenableChromeClient(Activity activity) {
+    public InAppChromeClient(Activity activity) {
         this.mActivity = activity;
     }
 
