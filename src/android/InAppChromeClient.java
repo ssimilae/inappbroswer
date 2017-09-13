@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 public class InAppChromeClient extends WebChromeClient {
     private Activity mActivity = null;
 
+
     private View mCustomView;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
     private int mOriginalOrientation;
