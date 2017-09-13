@@ -137,58 +137,6 @@ public class InAppChromeClient extends WebChromeClient {
 
 	
 
-	 private int mOriginalOrientation;
-     private FullscreenHolder mFullscreenContainer;
-     private CustomViewCallback mCustomViewCollback;
- 
-     @Override
-     public void onShowCustomView(View view, CustomViewCallback callback) {
- 
-         if (mCustomView != null) {
-             callback.onCustomViewHidden();
-             return;
-         }
- 
-         mOriginalOrientation = mActivity.getRequestedOrientation();
- 
-         FrameLayout decor = (FrameLayout) mActivity.getWindow().getDecorView();
- 
-         mFullscreenContainer = new FullscreenHolder(mActivity);
-         mFullscreenContainer.addView(view, ViewGroup.LayoutParams.MATCH_PARENT);
-         decor.addView(mFullscreenContainer, ViewGroup.LayoutParams.MATCH_PARENT);
-         mCustomView = view;
-         mCustomViewCollback = callback;
-         mActivity.setRequestedOrientation(mOriginalOrientation);
- 
-     }
- 
-     @Override
-     public void onHideCustomView() {
-         if (mCustomView == null) {
-             return;
-         }
- 
-         FrameLayout decor = (FrameLayout) mActivity.getWindow().getDecorView();
-         decor.removeView(mFullscreenContainer);
-         mFullscreenContainer = null;
-         mCustomView = null;
-         mCustomViewCollback.onCustomViewHidden();
-    
-         mActivity.setRequestedOrientation(mOriginalOrientation);
-     }
- 
- 
-     static class FullscreenHolder extends FrameLayout {
- 
-         public FullscreenHolder(Context ctx) {
-             super(ctx);
-             setBackgroundColor(ctx.getResources().getColor(android.R.color.black));
-         }
-    
-         @Override
-         public boolean onTouchEvent(MotionEvent evt) {
-             return true;
-         }
-    }
+
 
 }
