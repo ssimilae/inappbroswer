@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.widget.FrameLayout;
 
-public class FullscreenableChromeClient extends WebChromeClient {
+public class InAppChromeClient extends WebChromeClient {
     private Activity mActivity = null;
 
     private View mCustomView;
