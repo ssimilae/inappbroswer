@@ -28,6 +28,7 @@ import android.webkit.JsPromptResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebStorage;
 import android.webkit.WebView;
+import android.webkit.JsResult;
 import android.webkit.WebViewClient;
 import android.webkit.GeolocationPermissions.Callback;
 import android.app.Activity;
