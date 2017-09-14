@@ -57,7 +57,8 @@ public class InAppChromeClient extends WebChromeClient {
  
     @Override
     public void onShowCustomView(View view, int requestedOrientation, WebChromeClient.CustomViewCallback callback) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) 
+			{
             if (mCustomView != null) {
                 callback.onCustomViewHidden();
                 return;
