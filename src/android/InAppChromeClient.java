@@ -42,7 +42,7 @@ public final class InAppChromeClient extends WebChromeClient {
     private View mCustomView;
     private Activity mActivity;
     
-    public ChromeClient(Activity activity) {
+    public InAppChromeClient(Activity activity) {
         this.mActivity = activity;
     }
     
