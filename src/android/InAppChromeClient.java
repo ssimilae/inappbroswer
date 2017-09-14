@@ -52,7 +52,7 @@ public class InAppChromeClient extends WebChromeClient {
 
     public InAppChromeClient(CordovaWebView webView, Activity activity) {
         super();
-        this mCustomView = this.webView = webView; 
+        this.mCustomView = this.webView = webView; 
         this.mActivity = activity;
   
     }
