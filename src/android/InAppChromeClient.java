@@ -32,94 +32,80 @@ import android.webkit.WebViewClient;
 import android.webkit.GeolocationPermissions.Callback;
 import android.app.Activity;
 import android.content.Context;
-import android.widget.FrameLayout; 
+import android.widget.FrameLayout;
+import android.app.Activity;
 import android.view.View;
-import android.view.Window;
 import android.view.ViewGroup ;
-import android.view.MotionEvent;
-import android.view.WindowManager;
+import 	android.view.MotionEvent;
 
-public class InAppChromeClient extends WebChromeClient {
-    protected Activity mActivity = null;
- 
+public final class InAppChromeClient extends WebChromeClient {
     private View mCustomView;
-    private WebChromeClient.CustomViewCallback mCustomViewCallback;
-    private int mOriginalOrientation;
- 
-    private FrameLayout mContentView;
-    private FrameLayout mFullscreenContainer;
- 
-    private static final FrameLayout.LayoutParams COVER_SCREEN_PARAMS = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
- 
-    public InAppChromeClient(Activity activity) {
+    private Activity mActivity;
+    
+    public ChromeClient(Activity activity) {
         this.mActivity = activity;
     }
- 
+    
     @Override
-    public void onShowCustomView(View view, int requestedOrientation, WebChromeClient.CustomViewCallback callback) {
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) 
-			{
-            if (mCustomView != null) {
-                callback.onCustomViewHidden();
-                return;
-            }
- 
-            mOriginalOrientation = mActivity.getRequestedOrientation();
-            FrameLayout decor = (FrameLayout) mActivity.getWindow().getDecorView();
-            mFullscreenContainer = new FullscreenHolder(mActivity);
-            mFullscreenContainer.addView(view, COVER_SCREEN_PARAMS);
-            decor.addView(mFullscreenContainer, COVER_SCREEN_PARAMS);
-            mCustomView = view;
-            setFullscreen(true);
-            mCustomViewCallback = callback;
-            mActivity.setRequestedOrientation(requestedOrientation);
-        }
- 
-        super.onShowCustomView(view, requestedOrientation, callback);
+    public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
+        result.confirm();
+        return super.onJsAlert(view, url, message, result);
     }
+    
+     private int mOriginalOrientation;
+     private FullscreenHolder mFullscreenContainer;
+     private CustomViewCallback mCustomViewCollback;
  
-    @Override
-    public void onHideCustomView() {
-        if (mCustomView == null) {
-            return;
-        }
+     @Override
+     public void onShowCustomView(View view, CustomViewCallback callback) {
  
-        setFullscreen(false);
-        FrameLayout decor = (FrameLayout) mActivity.getWindow().getDecorView();
-        decor.removeView(mFullscreenContainer);
-        mFullscreenContainer = null;
-        mCustomView = null;
-        mCustomViewCallback.onCustomViewHidden();
-        mActivity.setRequestedOrientation(mOriginalOrientation);
-    }
+         if (mCustomView != null) {
+             callback.onCustomViewHidden();
+             return;
+         }
  
-    private void setFullscreen(boolean enabled) {
-        Window win = mActivity.getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_FULLSCREEN;
-        if (enabled) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-            if (mCustomView != null) {
-                mCustomView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-            } else {
-                mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
-            }
-        }
-        win.setAttributes(winParams);
-    }
+         mOriginalOrientation = mActivity.getRequestedOrientation();
  
-    private static class FullscreenHolder extends FrameLayout {
-        public FullscreenHolder(Context ctx) {
-            super(ctx);
-            setBackgroundColor(ctx.getResources().getColor(android.R.color.black));
-        }
+         FrameLayout decor = (FrameLayout) mActivity.getWindow().getDecorView();
  
-        @Override
-        public boolean onTouchEvent(MotionEvent evt) {
-            return true;
-        }
+         mFullscreenContainer = new FullscreenHolder(mActivity);
+         mFullscreenContainer.addView(view, ViewGroup.LayoutParams.MATCH_PARENT);
+         decor.addView(mFullscreenContainer, ViewGroup.LayoutParams.MATCH_PARENT);
+         mCustomView = view;
+         mCustomViewCollback = callback;
+         mActivity.setRequestedOrientation(mOriginalOrientation);
+ 
+     }
+ 
+     @Override
+     public void onHideCustomView() {
+         if (mCustomView == null) {
+             return;
+         }
+ 
+         FrameLayout decor = (FrameLayout) mActivity.getWindow().getDecorView();
+         decor.removeView(mFullscreenContainer);
+         mFullscreenContainer = null;
+         mCustomView = null;
+         mCustomViewCollback.onCustomViewHidden();
+    
+         mActivity.setRequestedOrientation(mOriginalOrientation);
+     }
+ 
+ 
+     static class FullscreenHolder extends FrameLayout {
+ 
+         public FullscreenHolder(Context ctx) {
+             super(ctx);
+             setBackgroundColor(ctx.getResources().getColor(android.R.color.black));
+         }
+    
+         @Override
+         public boolean onTouchEvent(MotionEvent evt) {
+             return true;
+         }
     }
 }
+
+
  
