@@ -180,7 +180,7 @@ public class InAppChromeClient extends WebChromeClient {
 
          mCustomViewCollback = callback;
          mActivity.setRequestedOrientation(mOriginalOrientation);
-	super.onShowCustomView(view, requestedOrientation, callback);
+		super.onShowCustomView(view, mOriginalOrientation, callback);
 
      }	
 	
