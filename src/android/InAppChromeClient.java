@@ -30,6 +30,8 @@ import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.GeolocationPermissions.Callback;
+import android.app.Activity;
+
 
 public class InAppChromeClient extends WebChromeClient {
 
