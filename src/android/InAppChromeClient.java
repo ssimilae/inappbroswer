@@ -43,7 +43,7 @@ public class InAppChromeClient extends WebChromeClient {
     private String LOG_TAG = "InAppChromeClient";
     private long MAX_QUOTA = 100 * 1024 * 1024;
 
-    public InAppChromeClient(CordovaWebView webView) {
+    public InAppChromeClient(CordovaWebView webView, Activity activity) {
         super();
         this.webView = webView; 
         this.mActivity = activity;
