@@ -36,7 +36,8 @@ import android.widget.FrameLayout;
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup ;
-import 	android.view.MotionEvent;
+import android.view.MotionEvent;
+import android.view.WindowManager;
 
 public class InAppChromeClient extends WebChromeClient {
 
