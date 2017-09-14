@@ -31,7 +31,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.GeolocationPermissions.Callback;
 import android.app.Activity;
-import android.widget.FrameLayout
+import android.widget.FrameLayout;
 import android.app.Activity;
 import android.view.View;
 
