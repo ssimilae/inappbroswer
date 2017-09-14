@@ -35,6 +35,7 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import android.app.Activity;
 import android.view.View;
+import android.view.Window;
 import android.view.ViewGroup ;
 import android.view.MotionEvent;
 import android.view.WindowManager;
@@ -155,6 +156,8 @@ public class InAppChromeClient extends WebChromeClient {
 
 
 	 private int mOriginalOrientation;
+	 private FrameLayout mContentView;
+ 
      private FullscreenHolder mFullscreenContainer;
      private CustomViewCallback mCustomViewCollback;
  
