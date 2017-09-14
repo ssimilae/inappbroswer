@@ -36,7 +36,7 @@ import android.widget.FrameLayout;
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup ;
-import android.view.MotionEvent;
+import 	android.view.MotionEvent;
 
 public class InAppChromeClient extends WebChromeClient {
 
@@ -52,7 +52,7 @@ public class InAppChromeClient extends WebChromeClient {
 
     public InAppChromeClient(CordovaWebView webView, Activity activity) {
         super();
-        this.mCustomView = this.webView = webView; 
+        this.webView = webView; 
         this.mActivity = activity;
   
     }
@@ -173,11 +173,33 @@ public class InAppChromeClient extends WebChromeClient {
          mFullscreenContainer.addView(view, ViewGroup.LayoutParams.MATCH_PARENT);
          decor.addView(mFullscreenContainer, ViewGroup.LayoutParams.MATCH_PARENT);
          mCustomView = view;
+		  setFullscreen(true);
+
          mCustomViewCollback = callback;
          mActivity.setRequestedOrientation(mOriginalOrientation);
+	super.onShowCustomView(view, requestedOrientation, callback);
+
+     }	
+	
+	  private void setFullscreen(boolean enabled) {
+        Window win = mActivity.getWindow();
+        WindowManager.LayoutParams winParams = win.getAttributes();
+        final int bits = WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        if (enabled) {
+            winParams.flags |= bits;
+        } else {
+            winParams.flags &= ~bits;
+            if (mCustomView != null) {
+                mCustomView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+            } else {
+                mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+            }
+        }
+        win.setAttributes(winParams);
+    }
+
  
-     }
- 
+
      @Override
      public void onHideCustomView() {
          if (mCustomView == null) {
