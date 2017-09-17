@@ -36,6 +36,8 @@ public class InAppChromeClient extends WebChromeClient {
 
             mOriginalOrientation = mActivity.getRequestedOrientation();
             FrameLayout decor = (FrameLayout) mActivity.getWindow().getDecorView();
+
+
             mFullscreenContainer = new FullscreenHolder(mActivity);
             mFullscreenContainer.addView(view, COVER_SCREEN_PARAMS);
             decor.addView(mFullscreenContainer, COVER_SCREEN_PARAMS);
