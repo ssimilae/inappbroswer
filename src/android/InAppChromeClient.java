@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.widget.FrameLayout;
 
+
 public class InAppChromeClient extends WebChromeClient {
     private Activity mActivity = null;
 
