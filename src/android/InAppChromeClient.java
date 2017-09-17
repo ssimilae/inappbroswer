@@ -9,9 +9,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.webkit.WebChromeClient;
 import android.widget.FrameLayout;
+import org.apache.cordova.CordovaWebView;
 
 public class InAppChromeClient extends WebChromeClient {
     private Activity mActivity = null;
+	
+	private CordovaWebView webView;
+    private String LOG_TAG = "InAppChromeClient";
+    private long MAX_QUOTA = 100 * 1024 * 1024;
+
 
     private View mCustomView;
     private WebChromeClient.CustomViewCallback mCustomViewCallback;
@@ -21,9 +27,16 @@ public class InAppChromeClient extends WebChromeClient {
 
     private static final FrameLayout.LayoutParams COVER_SCREEN_PARAMS = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-    public InAppChromeClient(Activity activity) {
-        this.mActivity = activity;
+    public InAppChromeClient(CordovaWebView webView,Activity activity) {
+		 super();
+		 this.mActivity = activity;
+		 this.webView = webView;
     }
+	
+
+
+
+ 
 
     @Override
     public void onShowCustomView(View view, CustomViewCallback callback) {
