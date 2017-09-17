@@ -20,6 +20,8 @@ public class InAppChromeClient extends WebChromeClient {
 
     private FrameLayout mFullscreenContainer;
 
+    private CordovaWebView webView;
+
     private static final FrameLayout.LayoutParams COVER_SCREEN_PARAMS = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
     public InAppChromeClient(CordovaWebView webView,Activity activity) {
