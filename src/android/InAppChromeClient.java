@@ -11,6 +11,7 @@ import android.webkit.WebChromeClient;
 import android.widget.FrameLayout;
 import org.apache.cordova.CordovaWebView;
 
+
 public class InAppChromeClient extends WebChromeClient {
     private Activity mActivity = null;
 
