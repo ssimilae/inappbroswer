@@ -30,7 +30,9 @@ import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.GeolocationPermissions.Callback;
-
+import android.webkit.*;
+import android.view.*;
+import android.app.*;
 public class InAppChromeClient extends WebChromeClient {
 
     private CordovaWebView webView;
