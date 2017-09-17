@@ -35,16 +35,9 @@ public class InAppChromeClient extends WebChromeClient {
 
     private CordovaWebView webView;
 
-
+	private View mCustomView;
     private Activity mActivity;
 
-
-
-private MyWebChromeClient mWebChromeClient = null;
-private View mCustomView;
-private RelativeLayout mContentView;
-private FrameLayout mCustomViewContainer;
-private WebChromeClient.CustomViewCallback mCustomViewCallback;
 
 
     private String LOG_TAG = "InAppChromeClient";
@@ -159,7 +152,7 @@ private WebChromeClient.CustomViewCallback mCustomViewCallback;
  
      @Override
      public void onShowCustomView(View view, CustomViewCallback callback) {
-		/*
+ 
          if (mCustomView != null) {
              callback.onCustomViewHidden();
              return;
@@ -175,27 +168,6 @@ private WebChromeClient.CustomViewCallback mCustomViewCallback;
          mCustomView = view;
          mCustomViewCollback = callback;
          mActivity.setRequestedOrientation(mOriginalOrientation);
-
-		*/
-
-		//
-
-		  // if a view already exists then immediately terminate the new one
-        if (mCustomView != null) {
-            callback.onCustomViewHidden();
-            return;
-        }
-        mContentView = (RelativeLayout) findViewById(R.id.activity_main);
-        mContentView.setVisibility(View.GONE);
-        mCustomViewContainer = new FrameLayout(MainActivity.this);
-        mCustomViewContainer.setLayoutParams(LayoutParameters);
-        mCustomViewContainer.setBackgroundResource(android.R.color.black);
-        view.setLayoutParams(LayoutParameters);
-        mCustomViewContainer.addView(view);
-        mCustomView = view;
-        mCustomViewCallback = callback;
-        mCustomViewContainer.setVisibility(View.VISIBLE);
-        setContentView(mCustomViewContainer);
  
      }
  
