@@ -961,10 +961,10 @@ public class InAppBrowser extends CordovaPlugin {
 	    public boolean shouldOverrideUrlLoading(WebView view, String url) {
 	    		    	
 	    	/*
-	    	 * URLº°·Î ºĞ±â°¡ ÇÊ¿äÇÕ´Ï´Ù. ¾îÇÃ¸®ÄÉÀÌ¼ÇÀ» ·ÎµùÇÏ´Â°Í°ú
-	    	 * WEB PAGE¸¦ ·ÎµùÇÏ´Â°ÍÀ» ºĞ¸® ÇÏ¿© Ã³¸®ÇØ¾ß ÇÕ´Ï´Ù.
-	    	 * ¸¸ÀÏ °¡¸ÍÁ¡ Æ¯Á¤ ¾îÇÃ URLÀÌ µé¾î¿Â´Ù¸é 
-	    	 * Á¶°ÇÀ» ´õ Ãß°¡ÇÏ¿© Ã³¸®ÇØ ÁÖ½Ê½Ã¿ä.
+	    	 * URLë³„ë¡œ ë¶„ê¸°ê°€ í•„ìš”í•©ë‹ˆë‹¤. ì–´í”Œë¦¬ì¼€ì´ì…˜ì„ ë¡œë”©í•˜ëŠ”ê²ƒê³¼
+	    	 * WEB PAGEë¥¼ ë¡œë”©í•˜ëŠ”ê²ƒì„ ë¶„ë¦¬ í•˜ì—¬ ì²˜ë¦¬í•´ì•¼ í•©ë‹ˆë‹¤.
+	    	 * ë§Œì¼ ê°€ë§¹ì  íŠ¹ì • ì–´í”Œ URLì´ ë“¤ì–´ì˜¨ë‹¤ë©´ 
+	    	 * ì¡°ê±´ì„ ë” ì¶”ê°€í•˜ì—¬ ì²˜ë¦¬í•´ ì£¼ì‹­ì‹œìš”.
 	    	 */	    	
 
     		if( !url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("javascript:") )
@@ -992,9 +992,9 @@ public class InAppBrowser extends CordovaPlugin {
 	    			
 	    			startActivity(intent);
 	    			    			
-	    			/*°¡¸ÍÁ¡ÀÇ »çÁ¤¿¡ µû¶ó ÇöÀç È­¸éÀ» Á¾·áÇÏÁö ¾Ê¾Æµµ µË´Ï´Ù.
-	    			    »ï¼ºÄ«µå ±âÅ¸ ¾È½ÉÅ¬¸¯¿¡¼­´Â Á¾·áµÇ¸é ¾ÈµÇ±â ¶§¹®¿¡ 
-	    			    Á¶°ÇÀ» °É¾î Á¾·áÇÏµµ·Ï ÇÏ¿´½À´Ï´Ù.*/
+	    			/*ê°€ë§¹ì ì˜ ì‚¬ì •ì— ë”°ë¼ í˜„ì¬ í™”ë©´ì„ ì¢…ë£Œí•˜ì§€ ì•Šì•„ë„ ë©ë‹ˆë‹¤.
+	    			    ì‚¼ì„±ì¹´ë“œ ê¸°íƒ€ ì•ˆì‹¬í´ë¦­ì—ì„œëŠ” ì¢…ë£Œë˜ë©´ ì•ˆë˜ê¸° ë•Œë¬¸ì— 
+	    			    ì¡°ê±´ì„ ê±¸ì–´ ì¢…ë£Œí•˜ë„ë¡ í•˜ì˜€ìŠµë‹ˆë‹¤.*/
 	    			if( url.startsWith("ispmobile://"))
 	    			{
 	    				finish();
@@ -1013,81 +1013,81 @@ public class InAppBrowser extends CordovaPlugin {
 				        return false;
 	    			}
 
-    				//Çö´ë¾ÛÄ«µå
+    				//í˜„ëŒ€ì•±ì¹´ë“œ
 	    			else if( intent.getDataString().startsWith("hdcardappcardansimclick://"))
 	    			{
 	    				DIALOG_CARDNM = "HYUNDAE";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, Çö´ë¾ÛÄ«µå¼³Ä¡ ");
+	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, í˜„ëŒ€ì•±ì¹´ë“œì„¤ì¹˜ ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
 	    			}	    			
 	    			
-    				//½ÅÇÑ¾ÛÄ«µå
+    				//ì‹ í•œì•±ì¹´ë“œ
 	    			else if( intent.getDataString().startsWith("shinhan-sr-ansimclick://"))
 	    			{
 	    				DIALOG_CARDNM = "SHINHAN";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, ½ÅÇÑÄ«µå¾Û¼³Ä¡ ");
+	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, ì‹ í•œì¹´ë“œì•±ì„¤ì¹˜ ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
 	    			}	    			
 	    			
-    				//»ï¼º¾ÛÄ«µå
+    				//ì‚¼ì„±ì•±ì¹´ë“œ
 	    			else if( intent.getDataString().startsWith("mpocket.online.ansimclick://"))
 	    			{
 	    				DIALOG_CARDNM = "SAMSUNG";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, »ï¼ºÄ«µå¾Û¼³Ä¡ ");
+	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, ì‚¼ì„±ì¹´ë“œì•±ì„¤ì¹˜ ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
 	    			}	    			
 	    			
-    				//·Ôµ¥ ¸ğ¹ÙÀÏ°áÁ¦
+    				//ë¡¯ë° ëª¨ë°”ì¼ê²°ì œ
 	    			else if( intent.getDataString().startsWith("lottesmartpay://"))
 	    			{
 	    				DIALOG_CARDNM = "LOTTE";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, ·Ôµ¥¸ğ¹ÙÀÏ°áÁ¦ ¼³Ä¡ ");
+	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, ë¡¯ë°ëª¨ë°”ì¼ê²°ì œ ì„¤ì¹˜ ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
 	    			}
-	    			//·Ôµ¥¾ÛÄ«µå(°£Æí°áÁ¦)
+	    			//ë¡¯ë°ì•±ì¹´ë“œ(ê°„í¸ê²°ì œ)
 	    			else if(intent.getDataString().startsWith("lotteappcard://"))
 	    			{
 	    				DIALOG_CARDNM = "LOTTEAPPCARD";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, ·Ôµ¥¾ÛÄ«µå ¼³Ä¡ ");
+	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, ë¡¯ë°ì•±ì¹´ë“œ ì„¤ì¹˜ ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
 	    			}	    	    			
 	    			
-    				//KB¾ÛÄ«µå
+    				//KBì•±ì¹´ë“œ
 	    			else if( intent.getDataString().startsWith("kb-acp://"))
 	    			{
 	    				DIALOG_CARDNM = "KB";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, KBÄ«µå¾Û¼³Ä¡ ");
+	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, KBì¹´ë“œì•±ì„¤ì¹˜ ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
 	    			}	   
 
-	    			//ÇÏ³ªSKÄ«µå ÅëÇÕ¾È½ÉÅ¬¸¯¾Û
+	    			//í•˜ë‚˜SKì¹´ë“œ í†µí•©ì•ˆì‹¬í´ë¦­ì•±
 	    			else if( intent.getDataString().startsWith("hanaansim://"))
 	    			{
 	    				DIALOG_CARDNM = "HANASK";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, ÇÏ³ªÄ«µå¾Û¼³Ä¡ ");
+	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, í•˜ë‚˜ì¹´ë“œì•±ì„¤ì¹˜ ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
 	    			}	   
 
 	    			/*
-	    			//½ÅÇÑÄ«µå SMART½ÅÇÑ ¾Û
+	    			//ì‹ í•œì¹´ë“œ SMARTì‹ í•œ ì•±
 	    			else if( intent.getDataString().startsWith("smshinhanansimclick://"))
 	    			{
 	    				DIALOG_CARDNM = "SHINHAN_SMART";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, Smart½ÅÇÑ¾Û¼³Ä¡");
+	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, Smartì‹ í•œì•±ì„¤ì¹˜");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
@@ -1095,19 +1095,19 @@ public class InAppBrowser extends CordovaPlugin {
 	    			*/	   
 	    			
 	    			/**
-	    				 > Çö´ëÄ«µå ¾È½ÉÅ¬¸¯ droidxantivirusweb://
-	    				  - ¹é½Å¾Û : Droid-x ¾Èµå·ÎÀÌÀÌµå¹é½Å - NSHC
+	    				 > í˜„ëŒ€ì¹´ë“œ ì•ˆì‹¬í´ë¦­ droidxantivirusweb://
+	    				  - ë°±ì‹ ì•± : Droid-x ì•ˆë“œë¡œì´ì´ë“œë°±ì‹  - NSHC
 	    				  - package name : net.nshc.droidxantivirus
-                          - Æ¯ÀÌ»çÇ× : ¹é½Å ¼³Ä¡ À¯¹«´Â Ã¼Å©¸¦ ÇÏ°í, ¾øÀ»¶§ ±¸±Û¸¶ÄÏÀ¸·Î ÀÌµ¿ÇÑ´Ù´Â ÀÌº¥Æ®´Â ÀÖÁö¸¸, ±¸±Û¸¶ÄÏÀ¸·Î ÀÌµ¿µÇÁö´Â ¾ÊÀ½
-                          - Ã³¸®·ÎÁ÷ : intent.getDataString()·Î ÇÏ¿© droidxantivirusweb °ªÀÌ ¿À¸é Çö´ëÄ«µå ¹é½Å¾ÛÀ¸·Î ÀÎ½ÄÇÏ¿© 
-                                                                          ÇÏµåÄÚµùµÈ ¸¶ÄÏ URL·Î ÀÌµ¿ÇÏµµ·Ï ÇÑ´Ù.
+                          - íŠ¹ì´ì‚¬í•­ : ë°±ì‹  ì„¤ì¹˜ ìœ ë¬´ëŠ” ì²´í¬ë¥¼ í•˜ê³ , ì—†ì„ë•Œ êµ¬ê¸€ë§ˆì¼“ìœ¼ë¡œ ì´ë™í•œë‹¤ëŠ” ì´ë²¤íŠ¸ëŠ” ìˆì§€ë§Œ, êµ¬ê¸€ë§ˆì¼“ìœ¼ë¡œ ì´ë™ë˜ì§€ëŠ” ì•ŠìŒ
+                          - ì²˜ë¦¬ë¡œì§ : intent.getDataString()ë¡œ í•˜ì—¬ droidxantivirusweb ê°’ì´ ì˜¤ë©´ í˜„ëŒ€ì¹´ë“œ ë°±ì‹ ì•±ìœ¼ë¡œ ì¸ì‹í•˜ì—¬ 
+                                                                          í•˜ë“œì½”ë”©ëœ ë§ˆì¼“ URLë¡œ ì´ë™í•˜ë„ë¡ í•œë‹¤.
 	    			 */
 	    			
-	    			//Çö´ëÄ«µå ¹é½Å¾Û
+	    			//í˜„ëŒ€ì¹´ë“œ ë°±ì‹ ì•±
 	    			else if( intent.getDataString().startsWith("droidxantivirusweb"))
 	    			{
 						/*************************************************************************************/
-						Log.d("<INIPAYMOBILE>", "ActivityNotFoundException, droidxantivirusweb ¹®ÀÚ¿­·Î ÀÎÀÔµÉ½Ã ¸¶ÄÏÀ¸·Î ÀÌµ¿µÇ´Â ¿¹¿Ü Ã³¸®: " );
+						Log.d("<INIPAYMOBILE>", "ActivityNotFoundException, droidxantivirusweb ë¬¸ìì—´ë¡œ ì¸ì…ë ì‹œ ë§ˆì¼“ìœ¼ë¡œ ì´ë™ë˜ëŠ” ì˜ˆì™¸ ì²˜ë¦¬: " );
 						/*************************************************************************************/
 
 	    				Intent hydVIntent = new Intent(Intent.ACTION_VIEW); 
@@ -1117,54 +1117,54 @@ public class InAppBrowser extends CordovaPlugin {
 	    			}	   
 	    			
 	    			
-    				//INTENT:// ÀÎÀÔµÉ½Ã ¿¹¿Ü Ã³¸®
+    				//INTENT:// ì¸ì…ë ì‹œ ì˜ˆì™¸ ì²˜ë¦¬
 	    			else if( url.startsWith("intent://"))
 	    			{
 	    				
 	    				/**
 	    				
-	    				 > »ï¼ºÄ«µå ¾È½ÉÅ¬¸¯ 
-	    				  - ¹é½Å¾Û : À¥¹é½Å - ÀÎÇÁ¶ó¿ş¾î Å×Å©³î·¯Áö
+	    				 > ì‚¼ì„±ì¹´ë“œ ì•ˆì‹¬í´ë¦­ 
+	    				  - ë°±ì‹ ì•± : ì›¹ë°±ì‹  - ì¸í”„ë¼ì›¨ì–´ í…Œí¬ë†€ëŸ¬ì§€
 	    				  - package name : kr.co.shiftworks.vguardweb
-                          - Æ¯ÀÌ»çÇ× : INTENT:// ÀÎÀÔµÉ½Ã Á¤»óÀû È£Ãâ
+                          - íŠ¹ì´ì‚¬í•­ : INTENT:// ì¸ì…ë ì‹œ ì •ìƒì  í˜¸ì¶œ
                           
-	    				 > ½ÅÇÑÄ«µå ¾È½ÉÅ¬¸¯ 
-	    				  - ¹é½Å¾Û : TouchEn mVaccine for Web - ¶ó¿Â½ÃÅ¥¾î(ÁÖ)
+	    				 > ì‹ í•œì¹´ë“œ ì•ˆì‹¬í´ë¦­ 
+	    				  - ë°±ì‹ ì•± : TouchEn mVaccine for Web - ë¼ì˜¨ì‹œíì–´(ì£¼)
 	    				  - package name : com.TouchEn.mVaccine.webs
-                          - Æ¯ÀÌ»çÇ× : INTENT:// ÀÎÀÔµÉ½Ã Á¤»óÀû È£Ãâ
+                          - íŠ¹ì´ì‚¬í•­ : INTENT:// ì¸ì…ë ì‹œ ì •ìƒì  í˜¸ì¶œ
 	    				  
-	    				 > ³óÇùÄ«µå ¾È½ÉÅ¬¸¯
-	    				  - ¹é½Å¾Û : V3 Mobile Plus 2.0
+	    				 > ë†í˜‘ì¹´ë“œ ì•ˆì‹¬í´ë¦­
+	    				  - ë°±ì‹ ì•± : V3 Mobile Plus 2.0
 	    				  - package name : com.ahnlab.v3mobileplus
-                          - Æ¯ÀÌ»çÇ× : ¹é½Å ¼³Ä¡ ¹öÆ°ÀÌ ÀÖÀ¸¸ç, ¹é½Å ¼³Ä¡ ¹öÆ° Å¬¸¯½Ã Á¤»óÀûÀ¸·Î ¸¶ÄÏÀ¸·Î ÀÌµ¿ÇÏ¸ç, ¹é½ÅÀÌ ¾ø¾îµµ °áÁ¦°¡ ÁøÇàÀÌ µÊ
+                          - íŠ¹ì´ì‚¬í•­ : ë°±ì‹  ì„¤ì¹˜ ë²„íŠ¼ì´ ìˆìœ¼ë©°, ë°±ì‹  ì„¤ì¹˜ ë²„íŠ¼ í´ë¦­ì‹œ ì •ìƒì ìœ¼ë¡œ ë§ˆì¼“ìœ¼ë¡œ ì´ë™í•˜ë©°, ë°±ì‹ ì´ ì—†ì–´ë„ ê²°ì œê°€ ì§„í–‰ì´ ë¨
                           
-	    				 > ¿ÜÈ¯Ä«µå ¾È½ÉÅ¬¸¯ 
-	    				  - ¹é½Å¾Û : TouchEn mVaccine for Web - ¶ó¿Â½ÃÅ¥¾î(ÁÖ)
+	    				 > ì™¸í™˜ì¹´ë“œ ì•ˆì‹¬í´ë¦­ 
+	    				  - ë°±ì‹ ì•± : TouchEn mVaccine for Web - ë¼ì˜¨ì‹œíì–´(ì£¼)
 	    				  - package name : com.TouchEn.mVaccine.webs
-                          - Æ¯ÀÌ»çÇ× : INTENT:// ÀÎÀÔµÉ½Ã Á¤»óÀû È£Ãâ
+                          - íŠ¹ì´ì‚¬í•­ : INTENT:// ì¸ì…ë ì‹œ ì •ìƒì  í˜¸ì¶œ
                                                     
-	    				 > ¾¾Æ¼Ä«µå ¾È½ÉÅ¬¸¯ 
-	    				  - ¹é½Å¾Û : TouchEn mVaccine for Web - ¶ó¿Â½ÃÅ¥¾î(ÁÖ)
+	    				 > ì”¨í‹°ì¹´ë“œ ì•ˆì‹¬í´ë¦­ 
+	    				  - ë°±ì‹ ì•± : TouchEn mVaccine for Web - ë¼ì˜¨ì‹œíì–´(ì£¼)
 	    				  - package name : com.TouchEn.mVaccine.webs
-                          - Æ¯ÀÌ»çÇ× : INTENT:// ÀÎÀÔµÉ½Ã Á¤»óÀû È£Ãâ
+                          - íŠ¹ì´ì‚¬í•­ : INTENT:// ì¸ì…ë ì‹œ ì •ìƒì  í˜¸ì¶œ
 
-                         > ÇÏ³ªSKÄ«µå ¾È½ÉÅ¬¸¯
-	    				  - ¹é½Å¾Û : V3 Mobile Plus 2.0
+                         > í•˜ë‚˜SKì¹´ë“œ ì•ˆì‹¬í´ë¦­
+	    				  - ë°±ì‹ ì•± : V3 Mobile Plus 2.0
 	    				  - package name : com.ahnlab.v3mobileplus
-                          - Æ¯ÀÌ»çÇ× : ¹é½Å ¼³Ä¡ ¹öÆ°ÀÌ ÀÖÀ¸¸ç, ¹é½Å ¼³Ä¡ ¹öÆ° Å¬¸¯½Ã Á¤»óÀûÀ¸·Î ¸¶ÄÏÀ¸·Î ÀÌµ¿ÇÏ¸ç, ¹é½ÅÀÌ ¾ø¾îµµ °áÁ¦°¡ ÁøÇàÀÌ µÊ
+                          - íŠ¹ì´ì‚¬í•­ : ë°±ì‹  ì„¤ì¹˜ ë²„íŠ¼ì´ ìˆìœ¼ë©°, ë°±ì‹  ì„¤ì¹˜ ë²„íŠ¼ í´ë¦­ì‹œ ì •ìƒì ìœ¼ë¡œ ë§ˆì¼“ìœ¼ë¡œ ì´ë™í•˜ë©°, ë°±ì‹ ì´ ì—†ì–´ë„ ê²°ì œê°€ ì§„í–‰ì´ ë¨
 
-                         > ÇÏ³ªÄ«µå ¾È½ÉÅ¬¸¯
-	    				  - ¹é½Å¾Û : V3 Mobile Plus 2.0
+                         > í•˜ë‚˜ì¹´ë“œ ì•ˆì‹¬í´ë¦­
+	    				  - ë°±ì‹ ì•± : V3 Mobile Plus 2.0
 	    				  - package name : com.ahnlab.v3mobileplus
-                          - Æ¯ÀÌ»çÇ× : ¹é½Å ¼³Ä¡ ¹öÆ°ÀÌ ÀÖÀ¸¸ç, ¹é½Å ¼³Ä¡ ¹öÆ° Å¬¸¯½Ã Á¤»óÀûÀ¸·Î ¸¶ÄÏÀ¸·Î ÀÌµ¿ÇÏ¸ç, ¹é½ÅÀÌ ¾ø¾îµµ °áÁ¦°¡ ÁøÇàÀÌ µÊ
+                          - íŠ¹ì´ì‚¬í•­ : ë°±ì‹  ì„¤ì¹˜ ë²„íŠ¼ì´ ìˆìœ¼ë©°, ë°±ì‹  ì„¤ì¹˜ ë²„íŠ¼ í´ë¦­ì‹œ ì •ìƒì ìœ¼ë¡œ ë§ˆì¼“ìœ¼ë¡œ ì´ë™í•˜ë©°, ë°±ì‹ ì´ ì—†ì–´ë„ ê²°ì œê°€ ì§„í–‰ì´ ë¨
 
-                         > ·Ôµ¥Ä«µå
-                          - ¹é½ÅÀÌ ¼³Ä¡µÇ¾î ÀÖÁö ¾Ê¾Æµµ, °áÁ¦ÆäÀÌÁö·Î ÀÌµ¿
+                         > ë¡¯ë°ì¹´ë“œ
+                          - ë°±ì‹ ì´ ì„¤ì¹˜ë˜ì–´ ìˆì§€ ì•Šì•„ë„, ê²°ì œí˜ì´ì§€ë¡œ ì´ë™
 
 	    				*/ 
 	    				
 						/*************************************************************************************/
-						Log.d("<INIPAYMOBILE>", "Custom URL (intent://) ·Î ÀÎÀÔµÉ½Ã ¸¶ÄÏÀ¸·Î ÀÌµ¿µÇ´Â ¿¹¿Ü Ã³¸®: " );
+						Log.d("<INIPAYMOBILE>", "Custom URL (intent://) ë¡œ ì¸ì…ë ì‹œ ë§ˆì¼“ìœ¼ë¡œ ì´ë™ë˜ëŠ” ì˜ˆì™¸ ì²˜ë¦¬: " );
 						/*************************************************************************************/
 
 						try {
@@ -1176,18 +1176,18 @@ public class InAppBrowser extends CordovaPlugin {
 							
 							excepIntent = new Intent(Intent.ACTION_VIEW); 
 							/*
-								°¡¸ÍÁ¡º°·Î ¿øÇÏ½Ã´Â ¹æ½ÄÀ¸·Î »ç¿ëÇÏ½Ã¸é µË´Ï´Ù.
+								ê°€ë§¹ì ë³„ë¡œ ì›í•˜ì‹œëŠ” ë°©ì‹ìœ¼ë¡œ ì‚¬ìš©í•˜ì‹œë©´ ë©ë‹ˆë‹¤.
 								market URL
-								market://search?q="+packageNm => packageNmÀ» °Ë»ö¾î·Î ¸¶ÄÏ °Ë»ö ÆäÀÌÁö ÀÌµ¿
-								market://search?q=pname:"+packageNm => packageNmÀ» ÆĞÅ°Áö·Î °®´Â ¾Û °Ë»ö ÆäÀÌÁö ÀÌµ¿
-								market://details?id="+packageNm => packageNm ¿¡ ÇØ´çÇÏ´Â ¾Û »ó¼¼ ÆäÀÌÁö·Î ÀÌµ¿
+								market://search?q="+packageNm => packageNmì„ ê²€ìƒ‰ì–´ë¡œ ë§ˆì¼“ ê²€ìƒ‰ í˜ì´ì§€ ì´ë™
+								market://search?q=pname:"+packageNm => packageNmì„ íŒ¨í‚¤ì§€ë¡œ ê°–ëŠ” ì•± ê²€ìƒ‰ í˜ì´ì§€ ì´ë™
+								market://details?id="+packageNm => packageNm ì— í•´ë‹¹í•˜ëŠ” ì•± ìƒì„¸ í˜ì´ì§€ë¡œ ì´ë™
 							*/
 							excepIntent.setData(Uri.parse("market://search?q="+packageNm)); 
 
 							startActivity(excepIntent); 
 
 						} catch (URISyntaxException e1) {
-							Log.e("<INIPAYMOBILE>", "INTENT:// ÀÎÀÔµÉ½Ã ¿¹¿Ü Ã³¸®  ¿À·ù : " + e1 );
+							Log.e("<INIPAYMOBILE>", "INTENT:// ì¸ì…ë ì‹œ ì˜ˆì™¸ ì²˜ë¦¬  ì˜¤ë¥˜ : " + e1 );
 						}
 						
 	    			}
