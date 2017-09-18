@@ -129,7 +129,7 @@ public class InAppBrowser extends CordovaPlugin {
             final String target = t;
             final HashMap<String, Boolean> features = parseFeature(args.optString(2));
 
-            LOG.d(LOG_TAG, "target = " + target);
+            ///Log.d(LOG_TAG, "target = " + target);
 
             this.cordova.getActivity().runOnUiThread(new Runnable() {
                 @Override
@@ -137,7 +137,7 @@ public class InAppBrowser extends CordovaPlugin {
                     String result = "";
                     // SELF
                     if (SELF.equals(target)) {
-                        LOG.d(LOG_TAG, "in self");
+                        ///Log.d(LOG_TAG, "in self");
                         /* This code exists for compatibility between 3.x and 4.x versions of Cordova.
                          * Previously the Config class had a static method, isUrlWhitelisted(). That
                          * responsibility has been moved to the plugins, with an aggregating method in
@@ -152,11 +152,11 @@ public class InAppBrowser extends CordovaPlugin {
                                 Method iuw = Config.class.getMethod("isUrlWhiteListed", String.class);
                                 shouldAllowNavigation = (Boolean)iuw.invoke(null, url);
                             } catch (NoSuchMethodException e) {
-                                LOG.d(LOG_TAG, e.getLocalizedMessage());
+                                ///Log.d(LOG_TAG, e.getLocalizedMessage());
                             } catch (IllegalAccessException e) {
-                                LOG.d(LOG_TAG, e.getLocalizedMessage());
+                                ///Log.d(LOG_TAG, e.getLocalizedMessage());
                             } catch (InvocationTargetException e) {
-                                LOG.d(LOG_TAG, e.getLocalizedMessage());
+                                ///Log.d(LOG_TAG, e.getLocalizedMessage());
                             }
                         }
                         if (shouldAllowNavigation == null) {
@@ -166,23 +166,23 @@ public class InAppBrowser extends CordovaPlugin {
                                 Method san = pm.getClass().getMethod("shouldAllowNavigation", String.class);
                                 shouldAllowNavigation = (Boolean)san.invoke(pm, url);
                             } catch (NoSuchMethodException e) {
-                                LOG.d(LOG_TAG, e.getLocalizedMessage());
+                                ///Log.d(LOG_TAG, e.getLocalizedMessage());
                             } catch (IllegalAccessException e) {
-                                LOG.d(LOG_TAG, e.getLocalizedMessage());
+                                ///Log.d(LOG_TAG, e.getLocalizedMessage());
                             } catch (InvocationTargetException e) {
-                                LOG.d(LOG_TAG, e.getLocalizedMessage());
+                                ///Log.d(LOG_TAG, e.getLocalizedMessage());
                             }
                         }
                         // load in webview
                         if (Boolean.TRUE.equals(shouldAllowNavigation)) {
-                            LOG.d(LOG_TAG, "loading in webview");
+                            ///Log.d(LOG_TAG, "loading in webview");
                             webView.loadUrl(url);
                         }
                         //Load the dialer
                         else if (url.startsWith(WebView.SCHEME_TEL))
                         {
                             try {
-                                LOG.d(LOG_TAG, "loading in dialer");
+                                ///Log.d(LOG_TAG, "loading in dialer");
                                 Intent intent = new Intent(Intent.ACTION_DIAL);
                                 intent.setData(Uri.parse(url));
                                 cordova.getActivity().startActivity(intent);
@@ -192,18 +192,18 @@ public class InAppBrowser extends CordovaPlugin {
                         }
                         // load in InAppBrowser
                         else {
-                            LOG.d(LOG_TAG, "loading in InAppBrowser");
+                            ///Log.d(LOG_TAG, "loading in InAppBrowser");
                             result = showWebPage(url, features);
                         }
                     }
                     // SYSTEM
                     else if (SYSTEM.equals(target)) {
-                        LOG.d(LOG_TAG, "in system");
+                        ///Log.d(LOG_TAG, "in system");
                         result = openExternal(url);
                     }
                     // BLANK - or anything else
                     else {
-                        LOG.d(LOG_TAG, "in blank");
+                        ///Log.d(LOG_TAG, "in blank");
                         result = showWebPage(url, features);
                     }
 
@@ -356,7 +356,7 @@ public class InAppBrowser extends CordovaPlugin {
                 }
             });
         } else {
-            LOG.d(LOG_TAG, "Can't inject code into the system browser");
+            ///Log.d(LOG_TAG, "Can't inject code into the system browser");
         }
     }
 
@@ -408,7 +408,7 @@ public class InAppBrowser extends CordovaPlugin {
             return "";
         // not catching FileUriExposedException explicitly because buildtools<24 doesn't know about it
         } catch (java.lang.RuntimeException e) {
-            LOG.d(LOG_TAG, "InAppBrowser: Error loading url "+url+":"+ e.toString());
+            ///Log.d(LOG_TAG, "InAppBrowser: Error loading url "+url+":"+ e.toString());
             return e.toString();
         }
     }
@@ -431,7 +431,7 @@ public class InAppBrowser extends CordovaPlugin {
                     // NB: wait for about:blank before dismissing
                     public void onPageFinished(WebView view, String url) {
                         if (dialog != null) {
-                            dialog.dismiss();
+                            dia///Log.dismiss();
                             dialog = null;
                         }
                     }
@@ -446,7 +446,7 @@ public class InAppBrowser extends CordovaPlugin {
                     obj.put("type", EXIT_EVENT);
                     sendUpdate(obj, false);
                 } catch (JSONException ex) {
-                    LOG.d(LOG_TAG, "Should never happen");
+                    ///Log.d(LOG_TAG, "Should never happen");
                 }
             }
         });
@@ -595,7 +595,7 @@ public class InAppBrowser extends CordovaPlugin {
 
                 // CB-6702 InAppBrowser hangs when opening more than one instance
                 if (dialog != null) {
-                    dialog.dismiss();
+                    dia///Log.dismiss();
                 };
 
                 // Let's create the main dialog
@@ -848,7 +848,7 @@ public class InAppBrowser extends CordovaPlugin {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         // For Android >= 5.0
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            LOG.d(LOG_TAG, "onActivityResult (For Android >= 5.0)");
+            ///Log.d(LOG_TAG, "onActivityResult (For Android >= 5.0)");
             // If RequestCode or Callback is Invalid
             if(requestCode != FILECHOOSER_REQUESTCODE_LOLLIPOP || mUploadCallbackLollipop == null) {
                 super.onActivityResult(requestCode, resultCode, intent);
@@ -859,7 +859,7 @@ public class InAppBrowser extends CordovaPlugin {
         }
         // For Android < 5.0
         else {
-            LOG.d(LOG_TAG, "onActivityResult (For Android < 5.0)");
+            ///Log.d(LOG_TAG, "onActivityResult (For Android < 5.0)");
             // If RequestCode or Callback is Invalid
             if(requestCode != FILECHOOSER_REQUESTCODE || mUploadCallback == null) {
                 super.onActivityResult(requestCode, resultCode, intent);
@@ -1037,11 +1037,11 @@ public class InAppBrowser extends CordovaPlugin {
 		    	Intent intent;
 
 				try{
-					Log.d("<INIPAYMOBILE>", "intent url : " + url);
+					///Log.d("<INIPAYMOBILE>", "intent url : " + url);
 					intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
 					
-					Log.d("<INIPAYMOBILE>", "intent getDataString : " + intent.getDataString());
-					Log.d("<INIPAYMOBILE>", "intent getPackage : " + intent.getPackage() );
+					///Log.d("<INIPAYMOBILE>", "intent getDataString : " + intent.getDataString());
+					///Log.d("<INIPAYMOBILE>", "intent getPackage : " + intent.getPackage() );
 
 				} catch (URISyntaxException ex) {
 					//Log.e("<INIPAYMOBILE>", "URI syntax error : " + url + ":" + ex.getMessage());
@@ -1055,7 +1055,7 @@ public class InAppBrowser extends CordovaPlugin {
 				
 	    		try{
 	    			
-	    			startActivity(intent);
+	    			cordova.getActivity().startActivity(intent);
 	    			    			
 	    			/*가맹점의 사정에 따라 현재 화면을 종료하지 않아도 됩니다.
 	    			    삼성카드 기타 안심클릭에서는 종료되면 안되기 때문에 
@@ -1172,12 +1172,12 @@ public class InAppBrowser extends CordovaPlugin {
 	    			else if( intent.getDataString().startsWith("droidxantivirusweb"))
 	    			{
 						/*************************************************************************************/
-						Log.d("<INIPAYMOBILE>", "ActivityNotFoundException, droidxantivirusweb 문자열로 인입될시 마켓으로 이동되는 예외 처리: " );
+						///Log.d("<INIPAYMOBILE>", "ActivityNotFoundException, droidxantivirusweb 문자열로 인입될시 마켓으로 이동되는 예외 처리: " );
 						/*************************************************************************************/
 
 	    				Intent hydVIntent = new Intent(Intent.ACTION_VIEW); 
 	    				hydVIntent.setData(Uri.parse("market://search?q=net.nshc.droidxantivirus")); 
-	    				startActivity(hydVIntent);
+	    				cordova.getActivity().startActivity(hydVIntent);
 	    				
 	    			}	   
 	    			
@@ -1229,7 +1229,7 @@ public class InAppBrowser extends CordovaPlugin {
 	    				*/ 
 	    				
 						/*************************************************************************************/
-						Log.d("<INIPAYMOBILE>", "Custom URL (intent://) 로 인입될시 마켓으로 이동되는 예외 처리: " );
+						///Log.d("<INIPAYMOBILE>", "Custom URL (intent://) 로 인입될시 마켓으로 이동되는 예외 처리: " );
 						/*************************************************************************************/
 
 						try {
@@ -1237,7 +1237,7 @@ public class InAppBrowser extends CordovaPlugin {
 							Intent excepIntent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
 							String packageNm = excepIntent.getPackage();
 							
-							Log.d("<INIPAYMOBILE>", "excepIntent getPackage : " + packageNm );
+							///Log.d("<INIPAYMOBILE>", "excepIntent getPackage : " + packageNm );
 							
 							excepIntent = new Intent(Intent.ACTION_VIEW); 
 							/*
@@ -1249,7 +1249,7 @@ public class InAppBrowser extends CordovaPlugin {
 							*/
 							excepIntent.setData(Uri.parse("market://search?q="+packageNm)); 
 
-							startActivity(excepIntent); 
+							cordova.getActivity().startActivity(excepIntent); 
 
 						} catch (URISyntaxException e1) {
 							//Log.e("<INIPAYMOBILE>", "INTENT:// 인입될시 예외 처리  오류 : " + e1 );
@@ -1325,7 +1325,7 @@ public class InAppBrowser extends CordovaPlugin {
 
                 sendUpdate(obj, true);
             } catch (JSONException ex) {
-                LOG.d(LOG_TAG, "Should never happen");
+                ///Log.d(LOG_TAG, "Should never happen");
             }
         }
 
@@ -1341,7 +1341,7 @@ public class InAppBrowser extends CordovaPlugin {
 
                 sendUpdate(obj, true, PluginResult.Status.ERROR);
             } catch (JSONException ex) {
-                LOG.d(LOG_TAG, "Should never happen");
+                ///Log.d(LOG_TAG, "Should never happen");
             }
         }
 
@@ -1357,11 +1357,11 @@ public class InAppBrowser extends CordovaPlugin {
                 Method gpm = webView.getClass().getMethod("getPluginManager");
                 pluginManager = (PluginManager)gpm.invoke(webView);
             } catch (NoSuchMethodException e) {
-                LOG.d(LOG_TAG, e.getLocalizedMessage());
+                ///Log.d(LOG_TAG, e.getLocalizedMessage());
             } catch (IllegalAccessException e) {
-                LOG.d(LOG_TAG, e.getLocalizedMessage());
+                ///Log.d(LOG_TAG, e.getLocalizedMessage());
             } catch (InvocationTargetException e) {
-                LOG.d(LOG_TAG, e.getLocalizedMessage());
+                ///Log.d(LOG_TAG, e.getLocalizedMessage());
             }
 
             if (pluginManager == null) {
@@ -1369,9 +1369,9 @@ public class InAppBrowser extends CordovaPlugin {
                     Field pmf = webView.getClass().getField("pluginManager");
                     pluginManager = (PluginManager)pmf.get(webView);
                 } catch (NoSuchFieldException e) {
-                    LOG.d(LOG_TAG, e.getLocalizedMessage());
+                    ///Log.d(LOG_TAG, e.getLocalizedMessage());
                 } catch (IllegalAccessException e) {
-                    LOG.d(LOG_TAG, e.getLocalizedMessage());
+                    ///Log.d(LOG_TAG, e.getLocalizedMessage());
                 }
             }
 
