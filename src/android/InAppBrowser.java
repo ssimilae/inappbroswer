@@ -187,7 +187,7 @@ public class InAppBrowser extends CordovaPlugin {
                                 intent.setData(Uri.parse(url));
                                 cordova.getActivity().startActivity(intent);
                             } catch (android.content.ActivityNotFoundException e) {
-                                LOG.e(LOG_TAG, "Error dialing " + url + ": " + e.toString());
+                                //Log.e(LOG_TAG, "Error dialing " + url + ": " + e.toString());
                             }
                         }
                         // load in InAppBrowser
@@ -886,7 +886,7 @@ public class InAppBrowser extends CordovaPlugin {
     private AlertDialog alertIsp;
 
 
-	 	protected Dialog onCreateDialog(int id) {//ShowDialog
+	 	protected Dialog showDialog(int id) {//ShowDialog
 		
 		 
 		  switch(id){
@@ -975,7 +975,7 @@ public class InAppBrowser extends CordovaPlugin {
                     cordova.getActivity().startActivity(intent);
                     return true;
                 } catch (android.content.ActivityNotFoundException e) {
-                    LOG.e(LOG_TAG, "Error dialing " + url + ": " + e.toString());
+                    //Log.e(LOG_TAG, "Error dialing " + url + ": " + e.toString());
                 }
             } else if (url.startsWith("geo:") || url.startsWith(WebView.SCHEME_MAILTO) || url.startsWith("market:") || url.startsWith("intent:")) {
                 try {
@@ -984,7 +984,7 @@ public class InAppBrowser extends CordovaPlugin {
                     cordova.getActivity().startActivity(intent);
                     return true;
                 } catch (android.content.ActivityNotFoundException e) {
-                    LOG.e(LOG_TAG, "Error with " + url + ": " + e.toString());
+                    //Log.e(LOG_TAG, "Error with " + url + ": " + e.toString());
                 }
             }
             // If sms:5551212?body=This is the message
@@ -1015,7 +1015,7 @@ public class InAppBrowser extends CordovaPlugin {
                     cordova.getActivity().startActivity(intent);
                     return true;
                 } catch (android.content.ActivityNotFoundException e) {
-                    LOG.e(LOG_TAG, "Error sending sms " + url + ":" + e.toString());
+                    //Log.e(LOG_TAG, "Error sending sms " + url + ":" + e.toString());
                 }
             }
             return false;
@@ -1044,7 +1044,7 @@ public class InAppBrowser extends CordovaPlugin {
 					Log.d("<INIPAYMOBILE>", "intent getPackage : " + intent.getPackage() );
 
 				} catch (URISyntaxException ex) {
-					Log.e("<INIPAYMOBILE>", "URI syntax error : " + url + ":" + ex.getMessage());
+					//Log.e("<INIPAYMOBILE>", "URI syntax error : " + url + ":" + ex.getMessage());
 					return false;
 				}
 
@@ -1067,8 +1067,8 @@ public class InAppBrowser extends CordovaPlugin {
 	    				    			
 	    		}catch(ActivityNotFoundException e)
 	    		{
-    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, ActivityNotFoundException INPUT >> " + url);    				
-    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, uri.getScheme()" + intent.getDataString());
+    				//Log.e("INIPAYMOBILE", "INIPAYMOBILE, ActivityNotFoundException INPUT >> " + url);    				
+    				//Log.e("INIPAYMOBILE", "INIPAYMOBILE, uri.getScheme()" + intent.getDataString());
     				
     				//ISP
 	    			if( url.startsWith("ispmobile://"))
@@ -1082,7 +1082,7 @@ public class InAppBrowser extends CordovaPlugin {
 	    			else if( intent.getDataString().startsWith("hdcardappcardansimclick://"))
 	    			{
 	    				DIALOG_CARDNM = "HYUNDAE";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, 현대앱카드설치 ");
+	    				//Log.e("INIPAYMOBILE", "INIPAYMOBILE, 현대앱카드설치 ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
@@ -1092,7 +1092,7 @@ public class InAppBrowser extends CordovaPlugin {
 	    			else if( intent.getDataString().startsWith("shinhan-sr-ansimclick://"))
 	    			{
 	    				DIALOG_CARDNM = "SHINHAN";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, 신한카드앱설치 ");
+	    				//Log.e("INIPAYMOBILE", "INIPAYMOBILE, 신한카드앱설치 ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
@@ -1102,7 +1102,7 @@ public class InAppBrowser extends CordovaPlugin {
 	    			else if( intent.getDataString().startsWith("mpocket.online.ansimclick://"))
 	    			{
 	    				DIALOG_CARDNM = "SAMSUNG";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, 삼성카드앱설치 ");
+	    				//Log.e("INIPAYMOBILE", "INIPAYMOBILE, 삼성카드앱설치 ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
@@ -1112,7 +1112,7 @@ public class InAppBrowser extends CordovaPlugin {
 	    			else if( intent.getDataString().startsWith("lottesmartpay://"))
 	    			{
 	    				DIALOG_CARDNM = "LOTTE";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, 롯데모바일결제 설치 ");
+	    				//Log.e("INIPAYMOBILE", "INIPAYMOBILE, 롯데모바일결제 설치 ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
@@ -1121,7 +1121,7 @@ public class InAppBrowser extends CordovaPlugin {
 	    			else if(intent.getDataString().startsWith("lotteappcard://"))
 	    			{
 	    				DIALOG_CARDNM = "LOTTEAPPCARD";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, 롯데앱카드 설치 ");
+	    				//Log.e("INIPAYMOBILE", "INIPAYMOBILE, 롯데앱카드 설치 ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
@@ -1131,7 +1131,7 @@ public class InAppBrowser extends CordovaPlugin {
 	    			else if( intent.getDataString().startsWith("kb-acp://"))
 	    			{
 	    				DIALOG_CARDNM = "KB";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, KB카드앱설치 ");
+	    				//Log.e("INIPAYMOBILE", "INIPAYMOBILE, KB카드앱설치 ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
@@ -1141,7 +1141,7 @@ public class InAppBrowser extends CordovaPlugin {
 	    			else if( intent.getDataString().startsWith("hanaansim://"))
 	    			{
 	    				DIALOG_CARDNM = "HANASK";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, 하나카드앱설치 ");
+	    				//Log.e("INIPAYMOBILE", "INIPAYMOBILE, 하나카드앱설치 ");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
@@ -1152,7 +1152,7 @@ public class InAppBrowser extends CordovaPlugin {
 	    			else if( intent.getDataString().startsWith("smshinhanansimclick://"))
 	    			{
 	    				DIALOG_CARDNM = "SHINHAN_SMART";
-	    				Log.e("INIPAYMOBILE", "INIPAYMOBILE, Smart신한앱설치");
+	    				//Log.e("INIPAYMOBILE", "INIPAYMOBILE, Smart신한앱설치");
 	    				view.loadData("<html><body></body></html>", "text/html", "euc-kr");
 	    				showDialog(DIALOG_CARDAPP);
 				        return false;
@@ -1252,7 +1252,7 @@ public class InAppBrowser extends CordovaPlugin {
 							startActivity(excepIntent); 
 
 						} catch (URISyntaxException e1) {
-							Log.e("<INIPAYMOBILE>", "INTENT:// 인입될시 예외 처리  오류 : " + e1 );
+							//Log.e("<INIPAYMOBILE>", "INTENT:// 인입될시 예외 처리  오류 : " + e1 );
 						}
 						
 	    			}
@@ -1287,7 +1287,7 @@ public class InAppBrowser extends CordovaPlugin {
             {
                 // Assume that everything is HTTP at this point, because if we don't specify,
                 // it really should be.  Complain loudly about this!!!
-                LOG.e(LOG_TAG, "Possible Uncaught/Unknown URI");
+                //Log.e(LOG_TAG, "Possible Uncaught/Unknown URI");
                 newloc = "http://" + url;
             }
 
@@ -1302,7 +1302,7 @@ public class InAppBrowser extends CordovaPlugin {
                 obj.put("url", newloc);
                 sendUpdate(obj, true);
             } catch (JSONException ex) {
-                LOG.e(LOG_TAG, "URI passed in has caused a JSON error.");
+                //Log.e(LOG_TAG, "URI passed in has caused a JSON error.");
             }
         }
 
