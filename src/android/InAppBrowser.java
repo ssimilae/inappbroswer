@@ -877,9 +877,74 @@ public class InAppBrowser extends CordovaPlugin {
     /**
      * The webview client receives notifications about appView
      */
+
+	    private static final int DIALOG_PROGRESS_WEBVIEW = 0;
+    private static final int DIALOG_PROGRESS_MESSAGE = 1;
+    private static final int DIALOG_ISP = 2; 
+    private static final int DIALOG_CARDAPP = 3; 
+    private static String DIALOG_CARDNM = ""; 
+    private AlertDialog alertIsp;
+
+
+	 	protected Dialog onCreateDialog(int id) {//ShowDialog
+		
+		 
+		  switch(id){
+		  	  
+	  	  	case DIALOG_PROGRESS_WEBVIEW:
+			  	ProgressDialog dialog = new ProgressDialog(this);
+			  	dialog.setMessage("로딩중입니다. \n잠시만 기다려주세요.");
+		        dialog.setIndeterminate(true);
+		        dialog.setCancelable(true);
+		        return dialog;
+
+			  case DIALOG_PROGRESS_MESSAGE:
+				  break;
+					
+		        
+			  case DIALOG_ISP:
+				  	
+				  alertIsp =  new AlertDialog.Builder(AppCallSample.this) 
+				  		.setIcon(android.R.drawable.ic_dialog_alert) 
+				  		.setTitle("알림") 
+				  		.setMessage("모바일 ISP 어플리케이션이 설치되어 있지 않습니다. \n설치를 눌러 진행 해 주십시요.\n취소를 누르면 결제가 취소 됩니다.") 
+				  		.setPositiveButton("설치", new DialogInterface.OnClickListener() { 
+				            @Override 
+				            public void onClick(DialogInterface dialog, int which) { 
+				            	
+				            	String ispUrl = "http://mobile.vpay.co.kr/jsp/MISP/andown.jsp"; 
+				            	sampleWebView.loadUrl(ispUrl);
+				            	finish();
+				            } 
+				  		}) 
+				  		.setNegativeButton("취소", new DialogInterface.OnClickListener() { 			 
+				            @Override 
+				            public void onClick(DialogInterface dialog, int which) { 
+				            	
+				            	Toast.makeText(AppCallSample.this, "(-1)결제를 취소 하셨습니다." , Toast.LENGTH_SHORT).show(); 
+				            	finish(); 
+				            } 
+			 
+				  		})
+				  		.create(); 
+				  	
+				  	return alertIsp;
+			  
+			  case DIALOG_CARDAPP :
+				  return getCardInstallAlertDialog(DIALOG_CARDNM);
+				  
+		   }//end switch
+		    
+		   return super.onCreateDialog(id);
+		   
+	}//end onCreateDialog
+	
+
     public class InAppBrowserClient extends WebViewClient {
         EditText edittext;
         CordovaWebView webView;
+	
+
 
         /**
          * Constructor.
