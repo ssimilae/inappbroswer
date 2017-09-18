@@ -914,7 +914,7 @@ public class InAppBrowser extends CordovaPlugin {
 				            	
 				            	String ispUrl = "http://mobile.vpay.co.kr/jsp/MISP/andown.jsp"; 
 				            	sampleWebView.loadUrl(ispUrl);
-				            	finish();
+				            	//finish();
 				            } 
 				  		}) 
 				  		.setNegativeButton("취소", new DialogInterface.OnClickListener() { 			 
@@ -922,7 +922,7 @@ public class InAppBrowser extends CordovaPlugin {
 				            public void onClick(DialogInterface dialog, int which) { 
 				            	
 				            	Toast.makeText(AppCallSample.this, "(-1)결제를 취소 하셨습니다." , Toast.LENGTH_SHORT).show(); 
-				            	finish(); 
+				            	//finish(); 
 				            } 
 			 
 				  		})
