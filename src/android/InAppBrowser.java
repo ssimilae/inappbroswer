@@ -431,7 +431,7 @@ public class InAppBrowser extends CordovaPlugin {
                     // NB: wait for about:blank before dismissing
                     public void onPageFinished(WebView view, String url) {
                         if (dialog != null) {
-                            dia///Log.dismiss();
+                            dialog.dismiss();
                             dialog = null;
                         }
                     }
@@ -595,7 +595,7 @@ public class InAppBrowser extends CordovaPlugin {
 
                 // CB-6702 InAppBrowser hangs when opening more than one instance
                 if (dialog != null) {
-                    dia///Log.dismiss();
+                    dialog.dismiss();
                 };
 
                 // Let's create the main dialog
